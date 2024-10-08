@@ -190,8 +190,8 @@ async def next_page(bot, query):
                 for file in files
               ]
     btn.insert(0,[
-	InlineKeyboardButton("🈲ʟᴀɴɢᴜᴀɢᴇ🈲", callback_data=f"languages#{key}#{offset}#{req}"),
-        InlineKeyboardButton("🫧ǫᴜᴀʟɪᴛʏ🫧", callback_data=f"qualities#{key}#{offset}#{req}"),
+	InlineKeyboardButton("🈲ʟᴀɴɢᴜᴀɢᴇ🈲 ", callback_data=f"languages#{key}#{offset}#{req}"),
+        InlineKeyboardButton("🫧ǫᴜᴀʟɪᴛʏ🫧 ", callback_data=f"qualities#{key}#{offset}#{req}"),
 	])
     btn.insert(1, [
 	InlineKeyboardButton("🗓ꜱᴇᴀꜱᴏɴ🗓", callback_data=f"seasons#{key}#{offset}#{req}"),
@@ -323,8 +323,8 @@ async def season_search(client: Client, query: CallbackQuery):
               ]
    
     btn.insert(0,[
-	InlineKeyboardButton("🈲ʟᴀɴɢᴜᴀɢᴇ🈲", callback_data=f"languages#{key}#{offset}#{req}"),
-        InlineKeyboardButton("🫧ǫᴜᴀʟɪᴛʏ🫧", callback_data=f"qualities#{key}#{offset}#{req}"),
+	InlineKeyboardButton("🈲ʟᴀɴɢᴜᴀɢᴇ🈲 ", callback_data=f"languages#{key}#{offset}#{req}"),
+        InlineKeyboardButton("🫧ǫᴜᴀʟɪᴛʏ🫧 ", callback_data=f"qualities#{key}#{offset}#{req}"),
 	])
     btn.insert(1, [
 	InlineKeyboardButton("🗓ꜱᴇᴀꜱᴏɴ🗓", callback_data=f"seasons#{key}#{offset}#{req}"),
@@ -430,8 +430,8 @@ async def year_search(client: Client, query: CallbackQuery):
         
    
     btn.insert(0,[
-	InlineKeyboardButton("🈲ʟᴀɴɢᴜᴀɢᴇ🈲", callback_data=f"languages#{key}#{offset}#{req}"),
-        InlineKeyboardButton("🫧ǫᴜᴀʟɪᴛʏ🫧", callback_data=f"qualities#{key}#{offset}#{req}"),
+	InlineKeyboardButton("🈲ʟᴀɴɢᴜᴀɢᴇ🈲 ", callback_data=f"languages#{key}#{offset}#{req}"),
+        InlineKeyboardButton("🫧ǫᴜᴀʟɪᴛʏ🫧 ", callback_data=f"qualities#{key}#{offset}#{req}"),
 	])
     btn.insert(1, [
 	InlineKeyboardButton("🗓ꜱᴇᴀꜱᴏɴ🗓", callback_data=f"seasons#{key}#{offset}#{req}"),
@@ -1468,8 +1468,8 @@ async def auto_filter(client, msg, spoll=False , pm_mode = False):
        if offset != "":
         if total_results >= MAX_BTN:
             btn.insert(0,[
-                InlineKeyboardButton("🈲ʟᴀɴɢᴜᴀɢᴇ🈲", callback_data=f"languages#{key}#{offset}#{req}"),
-                InlineKeyboardButton("🫧ǫᴜᴀʟɪᴛʏ🫧", callback_data=f"qualities#{key}#{offset}#{req}"),
+                InlineKeyboardButton("🈲ʟᴀɴɢᴜᴀɢᴇ🈲 ", callback_data=f"languages#{key}#{offset}#{req}"),
+                InlineKeyboardButton("🫧ǫᴜᴀʟɪᴛʏ🫧 ", callback_data=f"qualities#{key}#{offset}#{req}"),
 	    ])
             btn.insert(1, [
                 #InlineKeyboardButton("📥 𝗦𝗲𝗻𝗱 𝗔𝗹𝗹 𝗙𝗶𝗹𝗲𝘀 📥", callback_data=batch_link),
@@ -1479,7 +1479,7 @@ async def auto_filter(client, msg, spoll=False , pm_mode = False):
         else:
             btn.insert(0,[
                 #InlineKeyboardButton("📥 𝗦𝗲𝗻𝗱 𝗔𝗹𝗹 𝗙𝗶𝗹𝗲𝘀 📥", callback_data=batch_link),
-        	InlineKeyboardButton("🈲ʟᴀɴɢᴜᴀɢᴇ🈲", callback_data=f"languages#{key}#{offset}#{req}"),
+        	InlineKeyboardButton("🈲ʟᴀɴɢᴜᴀɢᴇ🈲 ", callback_data=f"languages#{key}#{offset}#{req}"),
                 InlineKeyboardButton("✨ɢᴇᴛᴀʟʟ✨", callback_data=batch_link),
 	    ])
             btn.insert(1,[
