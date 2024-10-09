@@ -1496,7 +1496,7 @@ async def auto_filter(client, msg, spoll=False , pm_mode = False):
             ])
 
         btn.insert(1,[
-            InlineKeyboardButton("🚸 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs 🚸", user_id=ADMINS[0])
+            InlineKeyboardButton("🚸 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs 🚸", user_id=ADMINS[0]),
         ])
                              	
     if spoll:
