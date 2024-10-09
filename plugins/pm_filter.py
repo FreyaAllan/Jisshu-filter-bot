@@ -1490,7 +1490,6 @@ async def auto_filter(client, msg, spoll=False , pm_mode = False):
                 InlineKeyboardButton("🚸 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs 🚸", user_id=ADMINS[0]),
                 #InlineKeyboardButton("✨ɢᴇᴛᴀʟʟ✨", callback_data=batch_link),
 	    ])	
-
 	else:
         btn.insert(0,[
             InlineKeyboardButton("✨ɢᴇᴛᴀʟʟ✨", callback_data=batch_link),
