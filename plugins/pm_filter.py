@@ -1481,16 +1481,25 @@ async def auto_filter(client, msg, spoll=False , pm_mode = False):
             btn.insert(0,[
                 #InlineKeyboardButton("📥 𝗦𝗲𝗻𝗱 𝗔𝗹𝗹 𝗙𝗶𝗹𝗲𝘀 📥", callback_data=batch_link),
         	InlineKeyboardButton("🈲ʟᴀɴɢᴜᴀɢᴇ🈲 ", callback_data=f"languages#{key}#{offset}#{req}"),
-                #InlineKeyboardButton("✨ɢᴇᴛᴀʟʟ✨", callback_data=batch_link),
-	        InlineKeyboardButton("🚸 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs 🚸", user_id=ADMINS[0]),
+                InlineKeyboardButton("✨ɢᴇᴛᴀʟʟ✨", callback_data=batch_link),
+	        #InlineKeyboardButton("🚸 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs 🚸", user_id=ADMINS[0]),
 	    ])
             btn.insert(1,[
-		InlineKeyboardButton("✨ɢᴇᴛᴀʟʟ✨", callback_data=batch_link),
+		#InlineKeyboardButton("✨ɢᴇᴛᴀʟʟ✨", callback_data=batch_link),
 		#InlineKeyboardButton("📥 𝗦𝗲𝗻𝗱 𝗔𝗹𝗹 𝗙𝗶𝗹𝗲𝘀 📥", callback_data=batch_link),
                 InlineKeyboardButton("🚸 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs 🚸", user_id=ADMINS[0]),
                 #InlineKeyboardButton("✨ɢᴇᴛᴀʟʟ✨", callback_data=batch_link),
 	    ])	
-                             
+
+	else:
+        btn.insert(0,[
+            InlineKeyboardButton("✨ɢᴇᴛᴀʟʟ✨", callback_data=batch_link),
+            ])
+
+        btn.insert(1,[
+            InlineKeyboardButton("🚸 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs 🚸", user_id=ADMINS[0])
+        ])
+                             	
     if spoll:
         m = await msg.message.edit(f"<b><code>{search}</code> ɪs ꜰᴏᴜɴᴅ ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ ꜰᴏʀ ꜰɪʟᴇs 📫</b>")
         await asyncio.sleep(1.2)
