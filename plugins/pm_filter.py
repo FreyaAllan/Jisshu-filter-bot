@@ -1482,16 +1482,19 @@ async def auto_filter(client, msg, spoll=False , pm_mode = False):
 	   
             ])
             btn.insert(1,[
-                InlineKeyboardButton("🚸 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs 🚸", user_id=ADMINS[0])
-            ])
+                InlineKeyboardButton("🚸 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs 🚸", user_id=ADMINS[0]),
+                InlineKeyboardButton("🈲ʟᴀɴɢᴜᴀɢᴇ🈲 ", callback_data=f"languages#{key}#{offset}#{req}"),
+	    ])
     else:
         btn.insert(0,[
             InlineKeyboardButton("✨ɢᴇᴛᴀʟʟ✨", callback_data=batch_link),
-            ])
+            InlineKeyboardButton("🫧ǫᴜᴀʟɪᴛʏ🫧 ", callback_data=f"qualities#{key}#{offset}#{req}"),
+	])
 
         btn.insert(1,[
-            InlineKeyboardButton("🚸 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs 🚸", user_id=ADMINS[0])
-        ])
+            InlineKeyboardButton("🚸 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs 🚸", user_id=ADMINS[0]),
+            InlineKeyboardButton("🗓ꜱᴇᴀꜱᴏɴ🗓", callback_data=f"seasons#{key}#{offset}#{req}"),
+	])
     if spoll:
         m = await msg.message.edit(f"<b><code>{search}</code> ɪs ꜰᴏᴜɴᴅ ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ ꜰᴏʀ ꜰɪʟᴇs 📫</b>")
         await asyncio.sleep(1.2)
