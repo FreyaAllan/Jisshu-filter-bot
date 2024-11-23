@@ -986,7 +986,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     
     elif query.data == 'about':
         await query.message.edit_text(
-            script.ABOUT_TEXT.format(query.from_user.mention(),temp.B_LINK),
+            script.ABOUT_TEXT.format(temp.B_LINK,query.from_user.mention(),temp.B_LINK),
             reply_markup = InlineKeyboardMarkup(
                 [[
 			InlineKeyboardButton('‼️ ᴅɪꜱᴄʟᴀɪᴍᴇʀ ‼️', callback_data='disclaimer')
