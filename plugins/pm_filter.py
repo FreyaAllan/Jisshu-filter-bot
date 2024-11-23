@@ -919,7 +919,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         reply_markup = InlineKeyboardMarkup(buttons)
     
         await query.message.edit_media(
-            media=InputMediaPhoto(
+          chat_id=query.message.chat.id,
+          message_id=query.message.id,
+          media=InputMediaPhoto(
             media=START_IMG,
             caption=script.HELP_TXT,
             parse_mode=enums.ParseMode.HTML 
