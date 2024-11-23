@@ -768,36 +768,45 @@ async def cb_handler(client: Client, query: CallbackQuery):
             return   
 	
     elif query.data.startswith("stream"):
-        user_id = query.from_user.id
-        file_id = query.data.split('#', 1)[1]
-        log_msg = await client.send_cached_media(
-        chat_id=LOG_CHANNEL,
-        file_id=file_id
-        )
-        fileName = quote_plus(get_name(log_msg))
-        online = f"{URL}watch/{log_msg.id}/{fileName}?hash={get_hash(log_msg)}"
-        download = f"{URL}{log_msg.id}/{fileName}?hash={get_hash(log_msg)}"
-        btn = [[
-            InlineKeyboardButton("ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ", url=online),
-            InlineKeyboardButton("ꜰᴀsᴛ ᴅᴏᴡɴʟᴏᴀᴅ", url=download)
-        ],[
-            InlineKeyboardButton('❌ ᴄʟᴏsᴇ ❌', callback_data='close_data')
-	]]
-        await query.edit_message_reply_markup(
-        reply_markup=InlineKeyboardMarkup(btn)
-	)
-        username = query.from_user.username
-        await log_msg.reply_text(
-            text=f"#LinkGenrated\n\nIᴅ : <code>{user_id}</code>\nUꜱᴇʀɴᴀᴍᴇ : {username}\n\nNᴀᴍᴇ : {fileName}",
-            quote=True,
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup([
-                [
-                    InlineKeyboardButton("🚀 ꜰᴀꜱᴛ ᴅᴏᴡɴʟᴏᴀᴅ", url=download),
-                    InlineKeyboardButton('ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ 🧿', url=online)
-                ]
-            ])
-	)
+	msg = await query.message.copy(chat_id=BIN_CHANNEL)
+        await msg.edit_caption(caption=f"**FILE NAME:** \n[{quote_plus(get_name(msg))}](https://telegram.dog/addlist/a6R50VZLc54yYTA8) \n\n**REQUESTED BY :**\n{query.from_user.mention}\n\nif you don't see stream or download button\njust report that on @renish_rgi_bot because of domin some time it's happening so you need to tell that on @renish_rgi_bot\n\nfor old stream link if not working follow this steps https://t.me/stream_install/13")
+        await asyncio.sleep(2) 
+        fmsg = await msg.forward(chat_id=query.from_user.id)
+        k = await fmsg.reply("<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Movie File/Video will be deleted in <b><u>10 mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward this File/Video to your Saved Messages and Start Download there</i></b> \n\n<b><u>🛑🛑🛑IMPORTANT🛑🛑🛑</u></b>\n\n YE File/Video <b><u>10 mins</u> me delete ho jayega 🫥 <i></b>(Copyright se bachne ke liye)</i>.\n\n<b><i>kahi or forward ⏩ karlo file ko fir download chalu karo</i></b>")
+        await msg.delete()
+        await asyncio.sleep(600)
+        await fmsg.delete()
+        await k.delete()
+      #  user_id = query.from_user.id
+    #    file_id = query.data.split('#', 1)[1]
+  #      log_msg = await client.send_cached_media(
+    #    chat_id=LOG_CHANNEL,
+    #    file_id=file_id
+   #     )
+      #  fileName = quote_plus(get_name(log_msg))
+  #      online = f"{URL}watch/{log_msg.id}/{fileName}?hash={get_hash(log_msg)}"
+    #    download = f"{URL}{log_msg.id}/{fileName}?hash={get_hash(log_msg)}"
+    #    btn = [[
+   #         InlineKeyboardButton("ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ", url=online),
+  #          InlineKeyboardButton("ꜰᴀsᴛ ᴅᴏᴡɴʟᴏᴀᴅ", url=download)
+   #     ],[
+   #         InlineKeyboardButton('❌ ᴄʟᴏsᴇ ❌', callback_data='close_data')
+#	]]
+     #   await query.edit_message_reply_markup(
+   #     reply_markup=InlineKeyboardMarkup(btn)
+#	)
+ #       username = query.from_user.username
+   #     await log_msg.reply_text(
+  #          text=f"#LinkGenrated\n\nIᴅ : <code>{user_id}</code>\nUꜱᴇʀɴᴀᴍᴇ : {username}\n\nNᴀᴍᴇ : {fileName}",
+   #         quote=True,
+  #          disable_web_page_preview=True,
+ #           reply_markup=InlineKeyboardMarkup([
+  #              [
+  #                  InlineKeyboardButton("🚀 ꜰᴀꜱᴛ ᴅᴏᴡɴʟᴏᴀᴅ", url=download),
+ #                   InlineKeyboardButton('ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ 🧿', url=online)
+  #              ]
+ #           ])
+#	)
 	
     elif query.data == "buttons":
         await query.answer("ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs 😊", show_alert=True)
