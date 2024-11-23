@@ -823,10 +823,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 InlineKeyboardButton('Tᴏᴘ Tʀᴇɴᴅɪɴɢ ⚡', callback_data="trending")
                 ]] 
         reply_markup = InlineKeyboardMarkup(buttons)
-	await client.edit_message_media(
+	await client.edit_media(
             query.message.chat.id, 
             query.message.id, 
-            InputMediaPhoto(random.choice(START_IMG))
+            InputMediaPhoto(random.choice(media=START_IMG))
 	)
         await query.message.edit_text(
             text=script.START_TXT.format(query.from_user.mention, get_status(), query.from_user.id),
