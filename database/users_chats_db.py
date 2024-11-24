@@ -404,10 +404,10 @@ class Database:
                 return None
         return await self.movies_update_channel.update_one({} , {'$set': {'id': id}} , upsert=True)
 
-     async def set_points(self, user_id, points):
+    async def set_points(self, user_id, points):
         await self.col.update_one({'id': user_id}, {'$set': {'points': points}})
 
-     async def get_points(self, user_id):
+    async def get_points(self, user_id):
         points = await self.col.find_one({'id': user_id})
         return points['points'] if points['points'] else 0
         
