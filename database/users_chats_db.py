@@ -388,14 +388,14 @@ class Database:
         else:
             return IS_PM_SEARCH
 
-     async def update_pm_search_status(self, bot_id, enable):
+    async def update_pm_search_status(self, bot_id, enable):
         bot = await self.botcol.find_one({'id': int(bot_id)})
         if bot:
             await self.botcol.update_one({'id': int(bot_id)}, {'$set': {'bot_pm_search': enable}})
         else:
             await self.botcol.insert_one({'id': int(bot_id), 'bot_pm_search': enable})
             
-     async def movies_update_channel_id(self , id=None):
+    async def movies_update_channel_id(self , id=None):
         if id is None:
             myLinks = await self.movies_update_channel.find_one({})
             if myLinks is not None:
@@ -404,10 +404,10 @@ class Database:
                 return None
         return await self.movies_update_channel.update_one({} , {'$set': {'id': id}} , upsert=True)
 
-    async def set_points(self, user_id, points):
+     async def set_points(self, user_id, points):
         await self.col.update_one({'id': user_id}, {'$set': {'points': points}})
 
-    async def get_points(self, user_id):
+     async def get_points(self, user_id):
         points = await self.col.find_one({'id': user_id})
         return points['points'] if points['points'] else 0
         
