@@ -769,7 +769,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 	
     elif query.data.startswith("stream"):
 	    msg = await query.message.copy(chat_id=BIN_CHANNEL)
-            await msg.edit_caption(caption=f"**FILE NAME:** \n[{quote_plus(get_name(msg))}](https://telegram.dog/addlist/a6R50VZLc54yYTA8) \n\n**REQUESTED BY :**\n{query.from_user.mention}\n\nif you don't see stream or download button\njust report that on @renish_rgi_bot because of domin some time it's happening so you need to tell that on @renish_rgi_bot\n\nfor old stream link if not working follow this steps https://t.me/stream_install/13")
+         #   await msg.edit_caption(caption=f"**FILE NAME:** \n[{quote_plus(get_name(msg))}](https://telegram.dog/addlist/a6R50VZLc54yYTA8) \n\n**REQUESTED BY :**\n{query.from_user.mention}\n\nif you don't see stream or download button\njust report that on @renish_rgi_bot because of domin some time it's happening so you need to tell that on @renish_rgi_bot\n\nfor old stream link if not working follow this steps https://t.me/stream_install/13")
             await asyncio.sleep(2) 
             fmsg = await msg.forward(chat_id=query.from_user.id)
             k = await fmsg.reply("<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Movie File/Video will be deleted in <b><u>10 mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward this File/Video to your Saved Messages and Start Download there</i></b> \n\n<b><u>🛑🛑🛑IMPORTANT🛑🛑🛑</u></b>\n\n YE File/Video <b><u>10 mins</u> me delete ho jayega 🫥 <i></b>(Copyright se bachne ke liye)</i>.\n\n<b><i>kahi or forward ⏩ karlo file ko fir download chalu karo</i></b>")
