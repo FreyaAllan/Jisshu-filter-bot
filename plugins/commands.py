@@ -1073,7 +1073,12 @@ async def check_plans_cmdpp(client, message):
     else:
         await message.reply_text("Usage: /point user_id point")
         
-
+@Client.on_message(filters.command("balance"))
+async def check_blance(client, message):
+    user_id  = message.from_user.id
+    points = await db.get_points(user_id)
+    await message.reply_text(f"Your current balance is : {points} star 🌟 \n\n get free prime using star /plans \n\n Earn coins useig your refer link 👇\n\n<code>https://t.me/{temp.U_NAME}?start=refer_{user_id}</code>\n👆 copy this link and invite to your friends and family to get 5 STAR 🌟 INSTANTLY !")
+    
 @Client.on_message(filters.command("verifyon"))
 async def verifyon(bot, message):
     chat_type = message.chat.type
