@@ -30,6 +30,7 @@ class Database:
                 is_banned=False,
                 ban_reason=""
             )
+            points=0
         )
 
     async def get_settings(self, id):
@@ -402,5 +403,13 @@ class Database:
             else:
                 return None
         return await self.movies_update_channel.update_one({} , {'$set': {'id': id}} , upsert=True)
+
+    async def set_points(self, user_id, points):
+        await self.col.update_one({'id': user_id}, {'$set': {'points': points}})
+
+    async def get_points(self, user_id):
+        points = await self.col.find_one({'id': user_id})
+        return points['points'] if points['points'] else 0
+        
 db = Database()
 
