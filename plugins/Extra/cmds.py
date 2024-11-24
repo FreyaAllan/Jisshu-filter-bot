@@ -43,9 +43,7 @@ async def admin_cmds(client, message):
         [KeyboardButton("/broadcast"), KeyboardButton("/grp_broadcast")],
         [KeyboardButton("/delreq"), KeyboardButton("/channel")],
         [KeyboardButton("/del_file"), KeyboardButton("/delete")],
-        [KeyboardButton("/deletefiles"), KeyboardButton("/deleteall")],
-        [KeyboardButton("All These Commands Can Be Used Only By Admins.")],
-        [KeyboardButton("⚡ powered by @JISSHU_BOTS")]
+        [KeyboardButton("/deletefiles"), KeyboardButton("/deleteall")]
     ]
     reply_markup = ReplyKeyboardMarkup(buttons, resize_keyboard=True, one_time_keyboard=True)
    
