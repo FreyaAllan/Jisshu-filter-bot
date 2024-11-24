@@ -29,7 +29,7 @@ class Database:
             ban_status=dict(
                 is_banned=False,
                 ban_reason=""
-            )
+            ),
             points=0
         )
 
