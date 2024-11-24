@@ -5,7 +5,7 @@ from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidD
 from Script import script
 import pyrogram
 from info import * #SUBSCRIPTION, PAYPICS, START_IMG, SETTINGS, URL, STICKERS_IDS,PREMIUM_POINT,MAX_BTN, BIN_CHANNEL, USERNAME, URL, ADMINS,REACTIONS, LANGUAGES, QUALITIES, YEARS, SEASONS, AUTH_CHANNEL, SUPPORT_GROUP, IMDB, IMDB_TEMPLATE, LOG_CHANNEL, LOG_VR_CHANNEL, TUTORIAL, FILE_CAPTION, SHORTENER_WEBSITE, SHORTENER_API, SHORTENER_WEBSITE2, SHORTENER_API2, DELETE_TIME
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto, ChatPermissions, WebAppInfo, InputMediaAnimation, InputMediaPhoto
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto, ChatPermissions, WebAppInfo, InputMediaAnimation, InputMediaPhoto, ChatJoinRequest
 from pyrogram import Client, filters, enums
 from pyrogram.errors import * #FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid, ChatAdminRequired
 from utils import temp, get_settings, is_check_admin, get_status, get_size, save_group_settings, is_req_subscribed, get_poster, get_status, get_readable_time , imdb , formate_file_name
@@ -30,6 +30,26 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 # ] codes add
 
+@Client.on_chat_join_request(filters.group | filters.channel)
+async def autoapproved(client: Client, message: ChatJoinRequest):
+    chat=message.chat # Chat
+    user=message.from_user # User
+    print(f"{user.first_name} Joined 🤝") # Logs
+    await client.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
+    await client.send_message(chat_id=chat.id, text=f"Hello {user.mention}\nWelcome To {chat.title}\n\nYour Auto Approved")
+    #   print("Welcome....")
+
+@Client.on_callback_query(filters.regex(r"^stream"))
+async def all_File_stream_bot(bot, query):
+    msg = await query.message.copy(chat_id=BIN_CHANNEL)
+    await msg.edit_caption(caption=f"**FILE NAME:** \n[{quote_plus(get_name(msg))}](https://telegram.dog/addlist/a6R50VZLc54yYTA8) \n\n**REQUESTED BY :**\n{query.from_user.mention}\n\nif you don't see stream or download button\njust report that on @renish_rgi_bot because of domin some time it's happening so you need to tell that on @renish_rgi_bot\n\nfor old stream link if not working follow this steps https://t.me/stream_install/13")
+    await asyncio.sleep(2) 
+    fmsg = await msg.forward(chat_id=query.from_user.id)
+    k = await fmsg.reply("<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Movie File/Video will be deleted in <b><u>10 mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward this File/Video to your Saved Messages and Start Download there</i></b> \n\n<b><u>🛑🛑🛑IMPORTANT🛑🛑🛑</u></b>\n\n YE File/Video <b><u>10 mins</u> me delete ho jayega 🫥 <i></b>(Copyright se bachne ke liye)</i>.\n\n<b><i>kahi or forward ⏩ karlo file ko fir download chalu karo</i></b>")
+    await msg.delete()
+    await asyncio.sleep(600)
+    await fmsg.delete()
+    await k.delete()
 
 @Client.on_message(filters.private & filters.text & filters.incoming)
 async def pm_search(client, message):
