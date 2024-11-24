@@ -1040,6 +1040,39 @@ async def verifyoff(bot, message):
     del verification_ids[grpid]
     return await message.reply_text("Verification successfully disabled.")
 
+@Client.on_message(filters.command("point"))
+async def check_plans_cmdpp(client, message):
+    user_id = message.from_user.id
+    if user_id not in ADMINS:
+        await message.delete()
+        return
+    if len(message.command) == 3:
+        user_id = int(message.command[1])  # Convert the user_id to integer
+        ppoint = int(message.command[2])  # Convert the ppoint to integer
+        oldpoint = await db.get_points(user_id)
+        user = await client.get_users(user_id)
+        if ppoint < 0:
+            new_points = (oldpoint - abs(ppoint))
+            if oldpoint < abs(ppoint):
+                await message.reply_text(f"user {user.mention()} doesn't have enough balance")
+            else:
+                await db.set_points(user_id, new_points)
+                await message.reply_text(f"SUCCESSFULLY {abs(ppoint)} STAR 🌟 has been **REMOVED** {user.mention()} now has {new_points} star in account")
+                await client.send_message(
+                    chat_id=user_id,
+                    text=f"{user.mention()} \n**{abs(ppoint)} STAR 🌟**👛 has been **REMOVED** by admins \n now you have **{new_points} STAR 🌟** in your account\n\n Contact Admin if this is a mistake \n\n 👮 Admin : {OWNER_USERNAME} \n",                
+                )
+        elif ppoint > 0:
+            new_points = (oldpoint + ppoint)
+            await db.set_points(user_id, new_points)
+            await message.reply_text(f"SUCCESSFULLY **ADDED {ppoint} STAR 🌟** to {user.mention()}'s account now {user.mention()} has {new_points} star in account")
+            await client.send_message(
+                chat_id=user_id,
+                text=f"{user.mention()} \n**{ppoint} STAR 🌟** ADDED by admins to your account\n now you have **{new_points} STAR 🌟** in your account\n\n Contact Admin if this is a mistake \n\n 👮 Admin : {OWNER_USERNAME} \n",                
+            )
+    else:
+        await message.reply_text("Usage: /point user_id point")
+        
 
 @Client.on_message(filters.command("verifyon"))
 async def verifyon(bot, message):
