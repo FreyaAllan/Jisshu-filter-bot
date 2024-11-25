@@ -949,9 +949,15 @@ async def most(client, callback_query):
         placeholder="Most searches of the day"
     )
     
-    await callback_query.message.reply_text("<b>Hᴇʀᴇ ɪꜱ ᴛʜᴇ ᴍᴏꜱᴛ ꜱᴇᴀʀᴄʜᴇꜱ ʟɪꜱᴛ 👇</b>", reply_markup=reply_markup)
+    spika = await callback_query.message.reply_text("<b>Hᴇʀᴇ ɪꜱ ᴛʜᴇ ᴍᴏꜱᴛ ꜱᴇᴀʀᴄʜᴇꜱ ʟɪꜱᴛ 👇</b>", reply_markup=reply_markup)
     await callback_query.answer()
-
+    sent_message = await callback_query.message.reply(
+        "<b>Admin All Commands [auto delete 2 min] 👇</b>",
+        reply_markup=reply_markup,
+    )
+    await asyncio.sleep(120)
+    await sent_message.delete()
+    await spika.delete() 
 
 @Client.on_callback_query(filters.regex(r"^trending$"))
 async def top(client, query):
@@ -964,7 +970,14 @@ async def top(client, query):
         buttons,
         resize_keyboard=True
     )
-    await query.message.reply("<b>Here Is The Top Trending List 👇</b>", reply_markup=spika)
+    rspika = await query.message.reply("<b>Here Is The Top Trending List 👇</b>", reply_markup=spika)
+    sent_message = await query.message.reply(
+        "<b>Commands [auto delete 2 min] 👇</b>",
+        reply_markup=reply_markup,
+    )
+    await asyncio.sleep(120)
+    await sent_message.delete()
+    await rspika.delete()
     
 @Client.on_message(filters.command("refer"))
 async def refer(bot, message):
