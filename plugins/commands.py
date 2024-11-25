@@ -88,7 +88,7 @@ async def start(client:Client, message):
         )
         return 
         # refer 
-    if len(message.command) == 2 and message.command[1].startswith("reff_"):
+    if len(message.command) == 2 and message.command[1].startswith("refer_"):
         try:
             user_id = int(message.command[1].split("_")[1])
         except ValueError:
@@ -108,6 +108,10 @@ async def start(client:Client, message):
         except Exception:
             return
         referdb.add_user(message.from_user.id)
+        old_points = await db.get_points(int(user_id))
+        new_points = old_points + 5
+        await db.set_points(int(user_id), new_points)
+        await client.send_message(chat_id=int(user_id), text=f"you earned 5 star 🌟 from user {message.from_user.mention}")
         fromuse = referdb.get_refer_points(user_id) + 10
         if fromuse == 100:
             referdb.add_refer_points(user_id, 0) 
@@ -166,6 +170,7 @@ async def start(client:Client, message):
     if not await db.is_user_exist(message.from_user.id):
         await db.add_user(message.from_user.id, message.from_user.first_name)
         await client.send_message(LOG_CHANNEL, script.NEW_USER_TXT.format(temp.B_LINK, message.from_user.id, message.from_user.mention))
+        await message.reply_text(f"🌟 Congratulations {message.from_user.mention}! \nYou've just earned 2 STAR 🌟 ! \nNOW YOU HAVE 2 STAR 🌟\n EARN MORE STAR 🌟 BY REFER LINK 🔗\n\n your link is <code>https://t.me/{temp.U_NAME}?start=refer_{message.from_user.id}</code> COPY this link and invite your friends par user you will get 5 STAR 🌟 START EARNING")
         try: 
             refData = message.command[1]
             if refData and refData.split("-", 1)[0] == "Jisshu":
